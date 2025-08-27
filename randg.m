@@ -4,7 +4,7 @@ function [g eN] = randg(N, e0)
   n = 1;
 
   while n <= N
-    [u eN] = randu2(2, eN);
+    [u eN] = randu2(eN);
 
     s = (2*u(1) - 1)^2 + (2*u(2) - 1)^2;
 
