@@ -5,10 +5,7 @@ function [g eN] = randg(N, e0)
   u = zeros(1, 2);
 
   while n <= N
-    u(1) = mod(7^5 * eN, 2^31 - 1);
-    u(2) = mod(7^5 * u(1), 2^31 - 1);
-    eN = u(2);
-    u = u ./ (2^31 - 1);
+    [u, eN] = randu(2, eN);
 
     s = (2*u(1) - 1)^2 + (2*u(2) - 1)^2;
 

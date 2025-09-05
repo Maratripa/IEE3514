@@ -1,16 +1,12 @@
 function [u, eN] = randu(N, e0)
-    mult = 7^5;
-    modu = 2^31 - 1;
-
     u = zeros(1, N);
-
-    u(1) = mod(mult * e0, modu);
+    u(1) = mod(16807 * e0, 2147483647);
 
     for i=2:N
-        u(i) = mod(mult * u(i - 1), modu);
+        u(i) = mod(16807 * u(i - 1), 2147483647);
     end
 
     eN = u(N);
-    u = u ./ modu;
+    u = u ./ 2147483647;
 end
 
