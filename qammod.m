@@ -7,8 +7,8 @@ function [s_i, s_q] = qammod(mensaje, M)
       s_i = mensaje(1:2:length(mensaje));
       s_q = mensaje(2:2:length(mensaje));
 
-      s_i = 2*s_i - 1;
-      s_q = 2*s_q - 1;
+      s_i = (2*s_i - 1) / sqrt(2);
+      s_q = (2*s_q - 1) / sqrt(2);
     case 16
       bit_matrix = reshape(mensaje, 4, []);
       
@@ -20,8 +20,8 @@ function [s_i, s_q] = qammod(mensaje, M)
 
       constellation = [-3 -1 3 1];
 
-      s_i = constellation(decimal_i + 1);
-      s_q = constellation(decimal_q + 1);
+      s_i = constellation(decimal_i + 1) / sqrt(10);
+      s_q = constellation(decimal_q + 1) / sqrt(10);
     case 64
       bit_matrix = reshape(mensaje, 6, []);
 
@@ -33,8 +33,8 @@ function [s_i, s_q] = qammod(mensaje, M)
 
       constellation = [-7 -5 -1 -3 7 5 1 3];
 
-      s_i = constellation(decimal_i + 1);
-      s_q = constellation(decimal_q + 1);
+      s_i = constellation(decimal_i + 1) / sqrt(42);
+      s_q = constellation(decimal_q + 1) / sqrt(42);
     otherwise
       error("Error. M (%d) no es un valor M-ario soportado.", M);
   end
