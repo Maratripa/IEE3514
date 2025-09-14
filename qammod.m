@@ -1,7 +1,7 @@
 function [s_i, s_q] = qammod(mensaje, M)
   switch M
     case 2
-      s_i = 2*mensaje + 1;
+      s_i = 2*mensaje - 1;
       s_q = zeros(1, length(mensaje));
     case 4
       s_i = mensaje(1:2:length(mensaje));
@@ -26,7 +26,7 @@ function [s_i, s_q] = qammod(mensaje, M)
       bit_matrix = reshape(mensaje, 6, []);
 
       group_i = bit_matrix(1:3, :);
-      gropu_q = bit_matrix(4:6, :);
+      group_q = bit_matrix(4:6, :);
 
       decimal_i = [4 2 1] * group_i;
       decimal_q = [4 2 1] * group_q;
