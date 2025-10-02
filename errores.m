@@ -1,9 +1,8 @@
 function [Err_s, Err_b] = errores(enviado, recibido, M)
 
-  Err_b = sum(bitxor(enviado, recibido));
+  dif = enviado ~= recibido;
+  Err_b = sum(dif);
 
-  tx_i, tx_q = qammod(enviado, M);
-  rx_i, rx_q = qammod(recibido, M);
-
-  Err_s = sum(bitor(bitxor(tx_i, rx_i), bitxor(tx_q, rx_q)));
+  dif_sim = reshape(dif, M, []);
+  Err_s = sum(any(dif_sim, 1));
 end
