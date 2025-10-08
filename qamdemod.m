@@ -1,5 +1,4 @@
 function [out] = qamdemod(rx_i, rx_q, M)
-  out = 0;
   switch M
     case 2
       out = rx_i > 0;

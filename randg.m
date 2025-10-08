@@ -1,17 +1,24 @@
-function [g eN] = randg(N, e0)
+function [g, eN] = randg(N, e0)
   g = zeros(1, N);
   eN = e0;
   n = 1;
-  u = zeros(1, 2);
 
+  [u, eN] = randu2(2*N, eN);
+  batch_i = 1;
+  
   while n <= N
-    [u, eN] = randu(2, eN);
+    if batch_i > length(u)
+        [u, eN] = randu2(2*(N - n + 1), eN);
+        batch_i = 1;
+    end
 
-    s = (2*u(1) - 1)^2 + (2*u(2) - 1)^2;
+    s = (2*u(batch_i) - 1)^2 + (2*u(batch_i + 1) - 1)^2;
 
     if s < 1
       g(n) = (2*u(1) - 1)*sqrt(-2*log(s)/s);
       n = n + 1;
     end
+
+    batch_i = batch_i + 2;
   end
 end
