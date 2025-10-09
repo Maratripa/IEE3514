@@ -11,8 +11,8 @@ function [out] = qamdemod(rx_i, rx_q, M)
       constellation = [-3 -1 1 3]';
       rx_i_norm = rx_i * sqrt(10);
       rx_q_norm = rx_q * sqrt(10);
-      [~, indices_i] = min(abs(rx_i_norm - constellation));
-      [~, indices_q] = min(abs(rx_q_norm - constellation));
+      [~, indices_i] = min((rx_i_norm - constellation).^2);
+      [~, indices_q] = min((rx_q_norm - constellation).^2);
 
       bits_matrix = [0 0 1 1; 0 1 1 0];
 
@@ -23,8 +23,8 @@ function [out] = qamdemod(rx_i, rx_q, M)
       constellation = [-7 -5 -3 -1 1 3 5 7]';
       rx_i_norm = rx_i * sqrt(42);
       rx_q_norm = rx_q * sqrt(42);
-      [~, indices_i] = min(abs(rx_i_norm - constellation));
-      [~, indices_q] = min(abs(rx_q_norm - constellation));
+      [~, indices_i] = min((rx_i_norm - constellation).^2);
+      [~, indices_q] = min((rx_q_norm - constellation).^2);
 
       bits_matrix = [0 0 0 0 1 1 1 1; 0 0 1 1 1 1 0 0; 0 1 1 0 0 1 1 0];
 
