@@ -3,6 +3,8 @@ function [out] = qamdemod(rx_i, rx_q, M)
     case 2
       out = rx_i > 0;
     case 4
+      % think of out(1:2:N) = rx_i > 0
+      %          out(2:2:N) = rx_q > 0
       bit_matrix = [rx_i > 0; rx_q > 0];
       out = reshape(bit_matrix, 1, []);
     case 16
@@ -14,8 +16,9 @@ function [out] = qamdemod(rx_i, rx_q, M)
 
       bits_matrix = [0 0 1 1; 0 1 1 0];
 
-      bits = [bits_matrix(:, indices_i); bits_matrix(:, indices_q)];
-      out = reshape(bits, 1, []);
+      bits_i = bits_matrix(:, indices_i);
+      bits_q = bits_matrix(:, indices_q);
+      out = reshape([bits_i; bits_q], 1, []);
     case 64
       constellation = [-7 -5 -3 -1 1 3 5 7]';
       rx_i_norm = rx_i * sqrt(42);
