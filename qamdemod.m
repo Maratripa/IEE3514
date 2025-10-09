@@ -25,8 +25,9 @@ function [out] = qamdemod(rx_i, rx_q, M)
 
       bits_matrix = [0 0 0 0 1 1 1 1; 0 0 1 1 1 1 0 0; 0 1 1 0 0 1 1 0];
 
-      bits = [bits_matrix(:, indices_i); bits_matrix(:, indices_q)];
-      out = reshape(bits, 1, []);
+      bits_i = bits_matrix(:, indices_i);
+      bits_q = bits_matrix(:, indices_q);
+      out = reshape([bits_i; bits_q], 1, []);
     otherwise
       error("Error. M (%d) no es un valor M-ario soportado.", M);
   end
