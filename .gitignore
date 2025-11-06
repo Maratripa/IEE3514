@@ -1,2 +1,10 @@
 *.lic
 *.ovpn
+
+E3/
+E5/
+plot*
+*.old
+test*
+
+DIG_proyecto_scripts_matlab/
