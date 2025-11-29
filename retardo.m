@@ -1,3 +1,3 @@
-function Retardo = retardo(Pulso, n)
-  Retardo = length(Pulso);
+function Retardo = retardo(Pulso, Canal)
+  Retardo = length(Pulso) + floor(length(Canal)/2);
 end
