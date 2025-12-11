@@ -5,11 +5,12 @@ function Pulso = pulso(Nup, tipo, ParamsPulso)
             % Pulso coseno elevado, asumimos beta = 1
             Pulso = (1 + cos(pi .* (abs(t)))) / 2;
 
+            if Nup == 1
+                Pulso = 1;
+            end
         case 2
-            % ESTO NO ES RAIZ COSENO ELEVADO
             beta = ParamsPulso(1);
             NTPulso = ParamsPulso(2);
-
             f = (-Nup*NTPulso/2 : Nup*NTPulso/2 - 1) / NTPulso;
     
             Pulso_fft = zeros(1, length(f));

@@ -1,3 +1,4 @@
 function Retardo = retardo(Pulso, Canal)
-  Retardo = length(Pulso) + floor(length(Canal)/2);
+    [~, argmax] = max(abs(Canal));
+    Retardo = length(Pulso) + argmax - 1;
 end

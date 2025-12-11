@@ -7,10 +7,32 @@ function [Canal, b1, b2] = canal(Nup, TipoCanal, ParamsCanal)
         case 2
             W = ParamsCanal(1);
             NTCanal = ParamsCanal(2);
-
+    
             t = (-Nup*NTCanal/2 : (Nup*NTCanal - 1)/2) / Nup;
-
+    
             Canal = W .* sinc(W .* t) / Nup;
+        case 3
+            Canal = zeros(1, Nup*3);
+            Canal(1:Nup:end) = [0, 0.98*exp(j*pi/12), sqrt(1 - 0.98^2)*exp(j*pi/6)];
+        case 4
+            Trms = ParamsCanal(1);
+            Ntc = ParamsCanal(2);
+            SemillaCanal_I = ParamsCanal(3);
+            SemillaCanal_Q = ParamsCanal(4);
+
+            L = ceil(2*Ntc*Nup*Trms);
+
+            Canal = zeros(1, L);
+
+            [X, b1] = randg(L, SemillaCanal_I);
+            [Y, b2] = randg(L, SemillaCanal_Q);
+
+            for l=1:L
+                Canal(l) = exp(-(l-1)/(2*Nup*Trms))*(X(l) +j*Y(l));
+            end
+
+            Canal = Canal * sqrt((1-exp(-1/(Nup*Trms)))/2);
         otherwise
-          error("Tipo no reconocido")
+            error("Tipo no reconocido")
+    end
 end
