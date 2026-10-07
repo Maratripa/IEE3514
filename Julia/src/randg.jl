@@ -1,5 +1,3 @@
-include("randu.jl")
-
 function randg(N, e0)
     g = zeros(N)
     n = 1

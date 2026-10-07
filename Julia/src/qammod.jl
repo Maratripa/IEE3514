@@ -5,7 +5,7 @@ function qammod(mensaje, M)
         return (2 .* mensaje[1:2:end] .- 1) ./ sqrt(2),
                (2 .* mensaje[2:2:end] .- 1) ./ sqrt(2)
     elseif M == 16 || M == 64
-        k = Int(log2(M)) / 2
+        k = Int(log2(M)) ÷ 2
         c, s = M == 16 ? ([-3, -1, 3, 1], sqrt(10)) :
                          ([-7, -5, -1, -3, 7, 5, 1, 3], sqrt(42))
         b = Int.(reshape(mensaje, 2k, :))
