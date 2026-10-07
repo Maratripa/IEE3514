@@ -2,7 +2,6 @@ function Pulso = pulso(Nup, tipo, ParamsPulso)
     switch tipo
         case 1
             t = 2*(-Nup/2 : (Nup/2 - 1)) / Nup;
-            % Pulso coseno elevado, asumimos beta = 1
             Pulso = (1 + cos(pi .* (abs(t)))) / 2;
 
             if Nup == 1

@@ -1,4 +1,4 @@
-function [u, eN] = randu2(N, e0)
+function [u, eN] = randu(N, e0)
     u = zeros(1, N);
     u(1) = 16807 * e0 - floor((16807*e0)/2147483647)*2147483647;
 
