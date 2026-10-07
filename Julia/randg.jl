@@ -25,5 +25,5 @@ function randg(N, e0)
         batch_i = batch_i + 2
     end
 
-    return [g, eN]
+    return g, eN
 end

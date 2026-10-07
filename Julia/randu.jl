@@ -9,5 +9,5 @@ function randu(N, e0)
     eN = u[N]
     u = u ./ 2147483647
 
-    return [u, eN]
+    return u, eN
 end
